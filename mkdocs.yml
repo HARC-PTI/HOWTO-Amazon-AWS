@@ -1,0 +1,8 @@
+site_name: Pre-built tools for AWS
+nav:
+    - Home: index.md
+    - User roles: roles.md
+    - Multi-node AWS Batch jobs: batch.md
+    - Troubleshooting: trouble.md
+    - About: about.md
+theme: readthedocs

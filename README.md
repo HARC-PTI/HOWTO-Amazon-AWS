@@ -1,2 +1,7 @@
 # Pre_built_Tools-for-Amazon-AWS
-Prebuilt tools for Amazon AWS cloud services -- VMs, Docker or Native, etc.
+
+This repository contains pre-built tools to perform serverless and parallel computations on Amazon Web Services. Follow this link to the documentation for the individual tools.
+
+# Contributing authors
+
+ - Philipp A. Witte, Georgia Institute of Technology, pwitte3@gatech.edu
