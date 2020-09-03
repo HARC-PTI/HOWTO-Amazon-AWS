@@ -2,7 +2,7 @@
 
 Packer is a free, open-source, and vendor-agnostic tool that allows you to automate the creation of images for various platforms, including AWS EC2, Google Cloud, Azure, Docker, DigitalOcean, VirtualBox, VMware, and many more.
 
-More info on Packer can be found at [https://www.packer.io](https://www.packer.io).
+More info on Packer can be found at [https://www.packer.io](https://www.packer.io).<br>
 The source code for Packer can be found at [https://github.com/hashicorp/packer](https://github.com/hashicorp/packer).
 
 This document will be specific for how to use Packer with AWS EC2 to create Amazon Machine Images (AMIs).
