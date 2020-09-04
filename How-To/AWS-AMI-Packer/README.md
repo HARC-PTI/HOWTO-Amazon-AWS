@@ -22,12 +22,13 @@ Several Packer build template examples can be found within the examples director
 	* See [https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 
 If running Packer from an AWS EC2 instance, you will need:
-* AWS IAM role to attach to EC2 instance as IAM Instance Profile. The IAM role will need policies attached to allow Packer to make AWS EC2 CLI calls on your behalf. This can be one of:
-	 * EC2FullAccess AWS policy
-	 * Custom policy with a minimum of the permissions listed here: [https://www.packer.io/docs/builders/amazon#iam-task-or-instance-role](https://www.packer.io/docs/builders/amazon#iam-task-or-instance-role).
+* AWS IAM role to attach to EC2 instance as IAM Instance Profile. The IAM role will need a permissions policy attached which allows Packer to make AWS EC2 CLI calls on your behalf.
+	* The permissions policy can be either (1) the AWS-provided <code>AmazonEC2FullAccess</code> policy or (2) a custom policy with a minimum of the permissions listed [here](https://www.packer.io/docs/builders/amazon#iam-task-or-instance-role).
+	* See [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#working-with-iam-roles](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#working-with-iam-roles)
  
 If running Packer from outside AWS (e.g. local system), you will need:
 * AWS IAM user with programmatic access to use the AWS CLI, with access keys generated.
-* AWS IAM role attached to IAM user (see above).
+* AWS IAM role attached to IAM user (IAM role requires the same policies with permissions listed above).
 * AWS IAM access keys (<code>aws_access_key_id</code> and <code>aws_secret_access_key</code>) need to be configured on the system.
-	* This can be done by setting them in the <code>~/.aws/credentials</code> file through the <code>aws configure</code> AWS CLI command **(recommended)** or set as environment variables in current shell (do not set globally in any shell rc or profile!).
+	* This can be done by running the <code>aws configure</code> AWS CLI command, which will place the access keys in the <code>~/.aws/credentials</code> file for you **(recommended)** or they can be set as environment variables in the current shell (do **not** set the environment variables globally in any shell/system rc or profile file!).
+
