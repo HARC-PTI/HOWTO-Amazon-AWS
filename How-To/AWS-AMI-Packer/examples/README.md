@@ -2,7 +2,7 @@
 
 Here are some example Packer build templates to build AWS AMIs.
 
-See [main Packer README file](../README.md) for instructions on setting up Packer and AWS CLI to run these example Packer build templates.
+See [main AWS-AMI-Packer README file](../README.md) for instructions on setting up Packer and AWS CLI to run these example Packer build templates.
 
 Each of the examples uses the amazon-ebs Packer builder. More info on that builder can be found here: [https://www.packer.io/docs/builders/amazon/ebs](https://www.packer.io/docs/builders/amazon/ebs). There are also additional AWS builders that can be used with Packer for creating other AWS resources besides AMIs.
 
