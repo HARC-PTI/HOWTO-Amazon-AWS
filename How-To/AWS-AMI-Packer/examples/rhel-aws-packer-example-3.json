@@ -1,0 +1,28 @@
+{
+    "variables": {
+        "target_ami":"ami-0170fc126935d44c3",
+        "aws_instance_type":"t3.small",
+        "aws_ssh_user":"{{ env `AWS_SSH_USERNAME` }}",
+        "aws_subnet":"{{ env `AWS_SUBNET_ID` }}",
+        "aws_vpc":"{{ env `AWS_VPC_ID` }}"
+    },
+    "builders": [
+        {
+        "type": "amazon-ebs",
+        "ami_name":"rhel-aws-packer-example-3-{{ timestamp }}",
+        "ssh_username":"{{ user `aws_ssh_user` }}",
+        "instance_type":"{{ user `aws_instance_type` }}",
+        "region":"us-east-2",
+        "source_ami":"{{ user `target_ami` }}",
+        "vpc_id":"{{ user `aws_vpc` }}",
+        "subnet_id":"{{ user `aws_subnet` }}",
+        "associate_public_ip_address":"True"
+        }
+    ],
+    "provisioners":[
+        {
+        "type": "ansible",
+        "playbook_file": "./ansible.yaml"
+        }
+    ]
+}
