@@ -20,8 +20,8 @@ Prior to using this example build template with Packer, you will need to set the
 
 Example:
 
-          export packer_aws_region="us-east-1"
-          export packer_os_version="7.8"
+          export packer_aws_region="us-east-2"
+          export packer_os_version="7.9"
           export packer_build_author="John Doe"
           packer build rhel-aws-packer-example-1.json
 
@@ -30,12 +30,18 @@ Example:
 
 TO-DO: Explain what this example does.
 
+This Packer build template examples uses a RHEL base AMI to build a temporary EC2 instance. After creating the instance, Packer copies over a file into a directory within the instance ([history_timestamp.sh](extras/history_timestamp.sh)) and then runs a separate bash script ([bootstrap.sh](extras/bootstrap.sh)) that makes various changes to the system. After that is done, Packer then creates the AMI from that temporary instance.
+
+See the note in the first example regarding the use of the official RHEL AMIs as the base image.
+
 Prior to using this example build template with Packer, you will need to set the following environment variables in your current shell:
 
+- packer_aws_region
 - packer_build_author
 
 Example:
 
+          export packer_aws_region="us-east-2"
           export packer_build_author="John Doe"
           packer build rhel-aws-packer-example-2.json
 
@@ -44,16 +50,28 @@ Example:
 
 TO-DO: Explain what this example does.
 
+This Packer build template examples uses a RHEL base AMI to build a temporary EC2 instance. After creating the instance, Packer uses a local installation of Ansible to run a local Ansible playbook on the instance through the SSH connection to the instance already established by Packer. The ansible playbook sets up a simple Apache httpd web server to serve a single static HTML file.
+
+Prior to using this example build template with Packer, you will need to take a couple actions first.
+
+First, you will need to make sure Ansible is installed locally on the ssytem where you are running the Packer build command, since Packer will use this to run the Ansible playbook. There are various ways to install ansible on a system, but one of the easiest ways is to use the 'pip' command to install the ansible Python package:
+
+	pip install ansible
+
+This is exactly how Ansible was installed within the temporary instance by the run-ansible.sh script for the first Packer build template described above. This assumes you have Python and pip installed on your local system (directions for which are beyond the scope of this HOW-TO).
+
 Prior to using this example build template with Packer, you will need to set the following environment variables in your current shell:
 
-- AWS_SSH_USERNAME
-- AWS_SUBNET_ID
-- AWS_VPC_ID
+- packer_aws_ssh_user
+- packer_aws_region
+- packer_aws_subnet_id
+- packer_aws_vpc_id
 
 Example:
 
-          export AWS_SSH_USERNAME="ec2-user"
-          export AWS_SUBNET_ID="subnet-XXXXXXXXXXXXXXXXX"
-          export AWS_VPC_ID="vpc-XXXXXXXXXXXXXXXXX"
+          export packer_aws_ssh_user="ec2-user"
+          export packer_aws_region="us-east-2"
+          export packer_aws_subnet_id="subnet-XXXXXXXXXXXXXXXXX"
+          export packer_aws_vpc_id="vpc-XXXXXXXXXXXXXXXXX"
           packer build rhel-aws-packer-example-3.json
 
