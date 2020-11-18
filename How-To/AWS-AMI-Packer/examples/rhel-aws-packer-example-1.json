@@ -1,10 +1,10 @@
 {
     "variables" : {
         "region" : "{{env `packer_aws_region`}}",
-        "instance_type" : "t3.small",
         "os_version" : "{{env `packer_os_version`}}",
-        "baseAMI_owner" : "309956199498",
-        "build_author" : "{{env `packer_build_author`}}"
+        "build_author" : "{{env `packer_build_author`}}",
+        "instance_type" : "t3.small",
+        "baseAMI_owner" : "309956199498"
     },
     "builders" : [
         {
@@ -49,13 +49,13 @@
     "provisioners" : [
         {
             "type" : "file",
-            "source" : "ansible",
+            "source" : "extras/example-1/ansible",
             "destination" : "/tmp"
         },
         {
             "type" : "shell",
-            "execute_command" : "bash {{ .Path }}",
-            "script" : "run-ansible.sh"
+            "execute_command" : "sudo bash {{ .Path }} -r packer -f base-os",
+            "script" : "extras/example-1/run-ansible.sh"
         }
     ]
 }
