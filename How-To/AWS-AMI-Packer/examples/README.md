@@ -28,8 +28,6 @@ Example:
 
 ## rhel-aws-packer-example-2.json
 
-TO-DO: Explain what this example does.
-
 This Packer build template examples uses a RHEL base AMI to build a temporary EC2 instance. After creating the instance, Packer copies over a file into a directory within the instance ([history_timestamp.sh](extras/history_timestamp.sh)) and then runs a separate bash script ([bootstrap.sh](extras/bootstrap.sh)) that makes various changes to the system. After that is done, Packer then creates the AMI from that temporary instance.
 
 See the note in the first example regarding the use of the official RHEL AMIs as the base image.
@@ -48,15 +46,13 @@ Example:
 
 ## rhel-aws-packer-example-3.json
 
-TO-DO: Explain what this example does.
-
 This Packer build template examples uses a RHEL base AMI to build a temporary EC2 instance. After creating the instance, Packer uses a local installation of Ansible to run a local Ansible playbook on the instance through the SSH connection to the instance already established by Packer. The ansible playbook sets up a simple Apache httpd web server to serve a single static HTML file.
 
 Prior to using this example build template with Packer, you will need to take a couple actions first.
 
 First, you will need to make sure Ansible is installed locally on the ssytem where you are running the Packer build command, since Packer will use this to run the Ansible playbook. There are various ways to install ansible on a system, but one of the easiest ways is to use the 'pip' command to install the ansible Python package:
 
-	pip install ansible
+	pip3 install ansible
 
 This is exactly how Ansible was installed within the temporary instance by the run-ansible.sh script for the first Packer build template described above. This assumes you have Python and pip installed on your local system (directions for which are beyond the scope of this HOW-TO).
 
