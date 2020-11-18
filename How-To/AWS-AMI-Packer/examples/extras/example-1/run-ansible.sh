@@ -2,7 +2,7 @@
 
 set -e
 
-usage="Ansible Script for Setting Up VM
+usage="Script to install and run Ansible
 
 $(basename "$0") [-h]
 
@@ -20,7 +20,7 @@ fi
 # default variable values
 ANSIBLE_DIR=/tmp/ansible
 PLAYBOOK_FILE=base-os.yml
-#TOP_DIR=/vault/install
+TMP_DIR=/tmp
 RUN_METHOD=local
 
 # parsing options
@@ -61,7 +61,7 @@ fi
 if [ "$RUN_METHOD" == "local" ]; then
     mkdir -p $ANSIBLE_DIR/
     cd $ANSIBLE_DIR/
-    tar xzf $TOP_DIR/ansible.tar.gz
+    tar xzf $TMP_DIR/ansible.tar.gz
 fi
 
 # install ansible
@@ -72,9 +72,6 @@ if ! (which ansible-playbook) >/dev/null 2>&1; then
     # install ansible
     pip3 install ansible
 fi
-
-# exporting environment variables
-export ANSIBLE_INSTALL_SOURCE_DIR=$TOP_DIR
 
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin
 
