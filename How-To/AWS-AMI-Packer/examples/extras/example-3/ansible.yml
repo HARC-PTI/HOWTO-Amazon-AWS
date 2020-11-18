@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  pre_tasks:
+    - name: Update all packages
+      yum:
+        name: "*"
+        state: latest
+  roles:
+    - roles/apache/
