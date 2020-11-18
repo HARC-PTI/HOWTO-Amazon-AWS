@@ -34,4 +34,7 @@ mv /tmp/history_timestamp.sh /etc/profile.d/.
 echo -e "\n** Fully updating system"
 yum update -y
 
+echo -e "\n** Re-enabling optional and extras repos (after updtes)"
+yum-config-manager --enable rhel-7-server-rhui-optional-rpms rhel-7-server-rhui-extras-rpms --save
+
 echo -e "\n** DONE with bootstrap **\n"
