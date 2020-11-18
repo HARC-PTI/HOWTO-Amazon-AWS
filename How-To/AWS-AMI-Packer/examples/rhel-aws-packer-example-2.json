@@ -34,7 +34,7 @@
         },
         {
             "type" : "shell",
-            "execute_command" : "{{.Vars}} bash '{{.Path}}'",
+            "execute_command" : "sudo {{.Vars}} bash '{{.Path}}'",
             "script" : "extras/example-2/bootstrap.sh"
         }
     ]
