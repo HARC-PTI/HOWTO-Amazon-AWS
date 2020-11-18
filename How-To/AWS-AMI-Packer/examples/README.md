@@ -46,7 +46,7 @@ Example:
 
 ## rhel-aws-packer-example-3.json
 
-This Packer build template examples uses a RHEL base AMI to build a temporary EC2 instance. After creating the instance, Packer uses a local installation of Ansible to run a local Ansible playbook on the instance through the SSH connection to the instance already established by Packer. The Ansible playbook ([ansible.yml](extras/example-3/ansible.yml)) contains an "apache" role ([extras/example-3/roles/apache/](extras/example-3/roles/apache/)) that sets up a simple Apache httpd web server to serve a single static HTML file.
+This Packer build template examples uses a RHEL base AMI to build a temporary EC2 instance. After creating the instance, Packer uses a local installation of Ansible to run a local Ansible playbook remotely through the current SSH connection to the temporary instance already established by Packer. The Ansible playbook ([ansible.yml](extras/example-3/ansible.yml)) contains an "apache" role ([extras/example-3/roles/apache/](extras/example-3/roles/apache/)) that sets up a simple Apache httpd web server to serve a single static HTML file.
 
 Prior to using this example build template with Packer, you will need to take a couple actions first:
 
