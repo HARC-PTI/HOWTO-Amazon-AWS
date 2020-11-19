@@ -1,0 +1,59 @@
+---
+- name: Install the 'Development tools' package group
+  yum:
+    name: "@Development tools"
+    state: present
+
+- name: Install the 'X Window System' package group
+  yum:
+    name: "@X Window System"
+    state: present
+
+- name: Install common/useful packages
+  yum:
+    name:
+      - deltarpm
+      - acpid
+      - bind-utils
+      - bash-completion
+      - screen
+      - xinetd
+      - man
+      - psmisc
+      - mlocate
+      - net-tools
+      - yum-utils
+      - lsof
+      - vim
+      - tmux
+    state: present
+
+- name: Disable and mask firewalld service
+  systemd:
+    name: firewalld
+    enabled: no
+    masked: yes
+
+- name: Remove the firewalld package
+  yum:
+    name: firewalld
+    state: absent
+
+- name: Install python3 and python3-pip
+  yum:
+    name:
+      - python3
+      - python3-pip
+    state: latest
+
+- name: Install awscli through pip
+  pip:
+    name: awscli
+    executable: pip3
+    state: latest
+
+- name: Update all packages
+  yum:
+    name: "*"
+    state: latest
+

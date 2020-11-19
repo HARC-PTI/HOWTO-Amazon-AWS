@@ -1,0 +1,4 @@
+---
+# tasks file for base-os
+- include: system.yml
+- include: packages.yml

@@ -1,0 +1,41 @@
+{
+    "variables" : {
+        "region" : "{{env `packer_aws_region`}}",
+        "build_author" : "{{env `packer_build_author`}}",
+        "instance_type" : "t3.small"
+    },
+    "builders" : [
+        {
+            "type" : "amazon-ebs",
+            "profile" : "default",
+            "region" : "{{user `region`}}",
+            "instance_type" : "{{user `instance_type`}}",
+            "source_ami" : "ami-03cfe750d5ea278f5",
+            "ssh_username" : "ec2-user",
+            "ami_name" : "rhel-aws-packer-example-2-{{isotime \"20060102-1504\"}}",
+            "ami_description" : "RHEL AWS Packer Example #2 ({{isotime \"20060102-1504\"}})",
+            "tags" : {
+                "Name" : "rhel-aws-packer-example-2-{{isotime \"20060102-1504\"}}",
+                "Builder" : "Packer v{{packer_version}}"
+            },
+            "run_tags" : {
+                "Name" : "rhel-aws-packer-example-2-builder",
+                "Tool" : "Packer",
+                "Tool Version" : "{{packer_version}}",
+                "Author" : "{{user `build_author`}}"
+            }
+        }
+    ],
+    "provisioners" : [
+        {
+            "type" : "file",
+            "source" : "extras/example-2/history_timestamp.sh",
+            "destination" : "/tmp/history_timestamp.sh"
+        },
+        {
+            "type" : "shell",
+            "execute_command" : "sudo {{.Vars}} bash '{{.Path}}'",
+            "script" : "extras/example-2/bootstrap.sh"
+        }
+    ]
+}
